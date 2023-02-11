@@ -1,7 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import {cz} from "./language_cz"
 import {en} from "./language_en"
+import playerImageSrc from "./images/player.png"
+import enemyImageSrc from "./images/enemy.png"
+import killImageSrc from "./images/kill.png"
 import "./basic.css"
+
+const playerImage = <img src={playerImageSrc} alt="player" />
+const enemyImage = <img src={enemyImageSrc} alt="enemy" />
+const killImage = <img src={killImageSrc} alt="enemy" />
+
 
 let language
 let languageSwitch = "en"
@@ -21,7 +29,7 @@ export const StoneScissorsPaperGame = () => {
   const [winnerStatus, setWinnerStatus] = useState('')
   const [winner, setWinner] = useState('')
   const [endGame, setEndGame] = useState(false)
-  const [battleField] = useState(["C", "", "", "P"])
+  const [battleField] = useState([enemyImage, "", "", playerImage])
     let playerStance = (stance[playerChoose])
     let computerStance = (stance[computerChoose])
 
@@ -47,39 +55,52 @@ export const StoneScissorsPaperGame = () => {
 
     if (computerHealth === 0 ) {
       setEndGame(true)
-      setWinner("Player")
+      battleField[computerStep] = killImage
+      setWinner(language.endGameWin)
     }
   }
 
   useEffect(()=>{
+    setComputerChoose(Math.floor(Math.random() * stance.length))
+
     if (winnerStatus === "computer") {
       battleField[computerStep] = ""
-      battleField[computerStep +1] = "C"
+      battleField[computerStep +1] = enemyImage
       setComputerStep(computerStep +1)
-      setComputerChoose(Math.floor(Math.random() * stance.length))
       setWinnerStatus('')
 
-      if (!battleField.includes('P')) {
+      if (!battleField.includes(playerImage)) {
         setEndGame(true)
-        setWinner("Computer")
+        setWinner(language.endGameLose)
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winnerStatus]);
  
 
-
   return (
-    <>
+    <div className='main'>
     <h1>{language.title}</h1>
 
-    <label>{language.moveLabel}</label>
-      {stance.map((item, index) =>
-        <button key={index} value={index} onClick={e => setPlayerChoose(e.target.value)}>{item}</button>
-      )}
-health{computerHealth}
-      <table className='test'>
+    { endGame ? 
+      <h2 className='endGame'>{winner}</h2>
+    : 
+    <>
+      <label>{language.moveLabel}</label>
+      <div className='buttons'>
+        {stance.map((item, index) =>
+          <button key={index} value={index} onClick={e => setPlayerChoose(e.target.value)}>{item}</button>
+        )}
+      </div>
+    </>
+    }
+
+      <h2>{language.computerChoose} {computerStance}!</h2>
+      <table className='battlefield'>
         <tbody>
+          <tr>
+            <th>{language.enemyHealth}: {computerHealth}</th>
+          </tr>
           <tr>
           {battleField.map((item, index) =>
             <td key={index}>{item}</td>
@@ -88,7 +109,7 @@ health{computerHealth}
         </tbody>
       </table>
 
-      <table>
+      <table className='hints'>
         <thead>
           <tr>
             <th>{language.tableWin}</th>
@@ -110,8 +131,6 @@ health{computerHealth}
           </tr>
         </tbody>
       </table> 
-    
-    result {winnerStatus} //// {computerStance}
-    </>
+    </div>
   )
 }

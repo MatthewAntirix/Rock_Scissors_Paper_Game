@@ -14,10 +14,65 @@ body {
     justify-content:    center;
 }
 
+.main {
+  width:                60vw;
+  height:               60vh;
+}
 
-.test td{
-  width: 100px;
-  height: 100px;
-  text-align: center;
-  border: solid 1px #000;
+.buttons {
+  display:              flex;
+  flex-direction:       row;
+  justify-content:      center;
+	justify-content:      space-between;
+  margin-bottom:        50px;
+}
+
+h1, h2 {
+  margin-bottom:        30px;
+  text-align:           center;
+}
+
+.endGame {
+  color:                red;
+
+}
+
+label {
+  display:              block;
+  text-align:           center;
+  margin:               10px;
+  font-size:            20px;
+}
+
+button {
+  width:                30%;
+  cursor:               pointer;
+}
+
+.battlefield {
+  margin:               auto;
+}
+
+.battlefield td {
+  width:                150px;
+  height:               150px;
+  text-align:           center;
+  border:               solid 1px #000;
+}
+
+.hints {
+  margin:               auto;
+  margin-top:           20px;
+  width:                50%;
+}
+
+.hints td {
+  width:                200px;
+  text-align:           center;
+  padding:              5px;
+}
+
+img {
+  width:                100%;
+  height:               100%;
 }
