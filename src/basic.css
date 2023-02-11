@@ -13,3 +13,11 @@ body {
     align-items:        center;
     justify-content:    center;
 }
+
+
+.test td{
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  border: solid 1px #000;
+}
