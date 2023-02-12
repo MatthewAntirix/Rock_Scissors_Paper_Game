@@ -29,6 +29,8 @@ export const StoneScissorsPaperGame = () => {
   const [winnerStatus, setWinnerStatus] = useState('')
   const [winner, setWinner] = useState('')
   const [endGame, setEndGame] = useState(false)
+  const [endRound, setEndRound] = useState(false)
+  const [result, setResult] = useState()
   const [battleField] = useState([enemyImage, "", "", playerImage])
     let playerStance = (stance[playerChoose])
     let computerStance = (stance[computerChoose])
@@ -40,17 +42,24 @@ export const StoneScissorsPaperGame = () => {
         setWinnerStatus("draw")
         setComputerHealth(computerHealth + 1)
         setPlayerChoose(-1)
+        setResult(`${language.computerChoose[0]} ${computerStance} ${language.computerChoose[1]} ${playerStance} ${language.roundResult.draw}!`)
       } 
       else if (stance.indexOf(playerStance) === stance.indexOf(computerStance)-1 || 
                 (stance.indexOf(playerStance) === stance.indexOf(computerStance)+2)) {
         setWinnerStatus("player")
         setComputerHealth(computerHealth - 1)
         setPlayerChoose(-1)
+        setResult(`${language.computerChoose[0]} ${computerStance} ${language.computerChoose[1]} ${playerStance} ${language.roundResult.win}!`)
+
       } else if (stance.indexOf(playerStance) === stance.indexOf(computerStance)+1 || 
                 (stance.indexOf(playerStance) === stance.indexOf(computerStance)-2)) {
         setWinnerStatus("computer")
         setPlayerChoose(-1)
+        setResult(`${language.computerChoose[0]} ${computerStance} ${language.computerChoose[1]} ${playerStance} ${language.roundResult.lose}!`)
+
       }
+      setComputerChoose(Math.floor(Math.random() * stance.length))
+      setEndRound(true)
     }
 
     if (computerHealth === 0 ) {
@@ -61,8 +70,6 @@ export const StoneScissorsPaperGame = () => {
   }
 
   useEffect(()=>{
-    setComputerChoose(Math.floor(Math.random() * stance.length))
-
     if (winnerStatus === "computer") {
       battleField[computerStep] = ""
       battleField[computerStep +1] = enemyImage
@@ -73,10 +80,11 @@ export const StoneScissorsPaperGame = () => {
         setEndGame(true)
         setWinner(language.endGameLose)
       }
+
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [winnerStatus]);
- 
+
 
   return (
     <div className='main'>
@@ -95,7 +103,12 @@ export const StoneScissorsPaperGame = () => {
     </>
     }
 
-      <h2>{language.computerChoose} {computerStance}!</h2>
+      { endRound ?
+        <h2>{result}</h2>
+      :
+        ""
+      }
+      
       <table className='battlefield'>
         <tbody>
           <tr>
