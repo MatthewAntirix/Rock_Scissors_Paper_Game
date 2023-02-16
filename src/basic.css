@@ -19,6 +19,15 @@ body {
   height:               60vh;
 }
 
+.left{
+  position:             absolute;
+  top:                  10%;
+  left:                 10%;
+  width:                100px;
+  padding:              5px;
+}
+
+
 .buttons {
   display:              flex;
   flex-direction:       row;
@@ -34,7 +43,6 @@ h1, h2 {
 
 .endGame {
   color:                red;
-
 }
 
 label {

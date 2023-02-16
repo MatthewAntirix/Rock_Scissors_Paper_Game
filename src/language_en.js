@@ -1,13 +1,14 @@
 
 export const en = {
     title: "Stone Scissor Paper Game",
+    reset: "Reset",
     tableWin: "Win",
     tableLose: "Lose",
     computerChoose: ["Computer chose", "against your"],
     roundResult: {
         draw: "and healed yourself by 1 HP",
         win: "and was hit by your sword",
-        lose: "and came closer to your",
+        lose: "and came closer to you",
     },
 
     enemyHealth: "Enemy health",

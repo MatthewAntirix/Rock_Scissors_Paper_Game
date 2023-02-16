@@ -11,6 +11,8 @@ const enemyImage = <img src={enemyImageSrc} alt="enemy" />
 const killImage = <img src={killImageSrc} alt="enemy" />
 
 
+// Language module //
+
 let language
 let languageSwitch = "en"
     if (languageSwitch === "cz") {
@@ -19,6 +21,10 @@ let languageSwitch = "en"
         language = en
     }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Main function ///////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const StoneScissorsPaperGame = () => {
   const stance = [language.stance.aggressive, language.stance.sneaky, language.stance.defensive]
@@ -89,6 +95,7 @@ export const StoneScissorsPaperGame = () => {
   return (
     <div className='main'>
     <h1>{language.title}</h1>
+    <form><input className='left' type={"submit"} value={language.reset}></input></form>
 
     { endGame ? 
       <h2 className='endGame'>{winner}</h2>

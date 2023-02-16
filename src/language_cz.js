@@ -1,6 +1,7 @@
 
 export const cz = {
     title: "Hra Kámen Nůžky Papír",
+    reset: "Reset",
     tableWin: "Výhra",
     tableLose: "Prohra",
     computerChoose: ["Nepřítel zvolil", "proti tvé volbě"],
