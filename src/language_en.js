@@ -1,6 +1,6 @@
 
 export const en = {
-    title: "Stone Scissor Paper Game",
+    title: "Rock Scissor Paper Game",
     reset: "Reset",
     tableWin: "Win",
     tableLose: "Lose",

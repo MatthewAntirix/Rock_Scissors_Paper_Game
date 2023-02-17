@@ -26,7 +26,7 @@ let languageSwitch = "en"
 /// Main function ///////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export const StoneScissorsPaperGame = () => {
+export const RockScissorsPaperGame = () => {
   const stance = [language.stance.aggressive, language.stance.sneaky, language.stance.defensive]
   const [playerChoose, setPlayerChoose] = useState(-1)
   const [computerChoose, setComputerChoose] = useState(Math.floor(Math.random() * stance.length))
